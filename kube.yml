@@ -18,28 +18,28 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-name: timeoff-management-deployment
-labels:
-app: timeoff-management
+  name: timeoff-management-deployment
+  labels:
+    app: timeoff-management
 spec:
-replicas: 3
-selector:
-matchLabels:
-app: timeoff-management
-template:
-metadata:
-labels:
-app: timeoff-management
-spec:
-containers:
-- name: timeoff-management
-image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
-ports:
-- containerPort: 3000
-livenessProbe:
-httpGet:
-path: /login
-port: 3000
-initialDelaySeconds: 15
-timeoutSeconds: 1
-periodSeconds: 10
+  replicas: 3
+  selector:
+    matchLabels:
+      app: timeoff-management
+  template:
+    metadata:
+      labels:
+        app: timeoff-management
+    spec:
+      containers:
+      - name: timeoff-management
+        image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /login
+            port: 3000
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 10
